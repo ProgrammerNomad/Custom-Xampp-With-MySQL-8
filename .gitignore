@@ -5,6 +5,9 @@
 htdocs/*
 # Keep htdocs directory structure
 !htdocs/.gitkeep
+# Keep custom info page
+!htdocs/dashboard/
+!htdocs/dashboard/custom-info.php
 
 # ===== MySQL Data =====
 # Exclude all database data (backup databases separately)
