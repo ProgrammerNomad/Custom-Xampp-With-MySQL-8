@@ -1,8 +1,91 @@
-htdocs/*
-mysql/data/mysql_error.log
-/phpMyAdmin_old_backup
-apache/logs/access.log
-apache/logs/error.log
+# XAMPP .gitignore - For backing up XAMPP configuration to GitHub
 
-/tmp
-/apache/logs
+# ===== Projects & User Data =====
+# Exclude all htdocs content (your projects should have their own repos)
+htdocs/*
+# Keep htdocs directory structure
+!htdocs/.gitkeep
+
+# ===== MySQL Data =====
+# Exclude all database data (backup databases separately)
+mysql/data/*
+mysql_old_backup/*
+!mysql/data/.gitkeep
+
+# ===== Logs =====
+# Apache logs
+apache/logs/*.log
+apache/logs/*.pid
+apache/logs/*.lock
+
+# MySQL logs
+mysql/data/*.log
+mysql/data/*.err
+
+# PHP logs
+php/logs/*.log
+
+# FileZilla logs
+FileZillaFTP/Logs/*
+
+# Mercury logs
+MercuryMail/LOGS/*
+
+# ===== Temporary Files =====
+tmp/*
+!tmp/.gitkeep
+temp/*
+!temp/.gitkeep
+
+# ===== Cache & Session Files =====
+php/sessions/*
+phpMyAdmin/tmp/*
+
+# ===== Backups =====
+*_old_backup/
+*_backup/
+*.backup
+*.bak
+*.old
+
+# PHP backup files
+php/php.ini.backup_*
+apache/conf/httpd.conf.backup_*
+
+# ===== PID & Lock Files =====
+*.pid
+*.lock
+
+# ===== Windows Specific =====
+Thumbs.db
+desktop.ini
+$RECYCLE.BIN/
+
+# ===== Downloaded Archives =====
+*.zip
+*.tar.gz
+*.rar
+*.7z
+
+# ===== SSL Certificates (sensitive) =====
+apache/conf/ssl.crt/*.crt
+apache/conf/ssl.key/*.key
+# Keep example/default certs
+!apache/conf/ssl.crt/server.crt
+!apache/conf/ssl.key/server.key
+
+# ===== Passwords & Security =====
+passwords.txt
+security/
+
+# ===== Large Binary Directories (optional - uncomment if too large) =====
+# perl/
+# tomcat/
+
+# ===== Keep Important Config Files =====
+# These lines ensure config files are included
+!php/php.ini
+!apache/conf/httpd.conf
+!apache/conf/extra/*.conf
+!mysql/bin/my.ini
+!phpMyAdmin/config.inc.php
