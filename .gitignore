@@ -3,4 +3,6 @@ mysql/data/mysql_error.log
 /phpMyAdmin_old_backup
 apache/logs/access.log
 apache/logs/error.log
-/mysql/data
+
+/tmp
+/apache/logs
