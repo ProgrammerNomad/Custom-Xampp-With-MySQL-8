@@ -1,0 +1,53 @@
+================================================================================
+  CUSTOM HIGH-PERFORMANCE XAMPP - MySQL 8.0 Edition
+================================================================================
+
+This is a heavily optimized XAMPP build, not the default installation!
+
+KEY FEATURES:
+-------------
+✓ MySQL 8.0.45 (replaced default MariaDB)
+✓ phpMyAdmin 5.2.3 with full features enabled
+✓ PHP OPcache enabled (256MB, 20,000 files)
+✓ 1GB PHP memory limit
+✓ 256MB upload/post size
+✓ 4GB InnoDB buffer pool (optimized for 16GB RAM)
+✓ Apache MaxKeepAlive: 500 connections
+✓ Enhanced security headers
+
+PERFORMANCE ENHANCEMENTS:
+------------------------
+- PHP execution 5-10x faster (OPcache)
+- MySQL queries optimized with large buffer pool
+- Large file uploads supported (256MB)
+- Enhanced connection handling
+- Optimized for development and production
+
+DOCUMENTATION:
+--------------
+See README.md for complete documentation, installation guide, and troubleshooting.
+
+GITHUB REPOSITORY:
+------------------
+https://github.com/ProgrammerNomad/Custom-Xampp-With-MySQL-8
+
+DEFAULT CREDENTIALS:
+-------------------
+MySQL User: root
+MySQL Password: (empty)
+
+WARNING: Change default passwords for production use!
+
+BUILD INFO:
+-----------
+Build Date: February 9, 2026
+Build By: ProgrammerNomad
+Base: XAMPP 3.3.0
+PHP: 8.2.12
+MySQL: 8.0.45
+Apache: 2.4.x
+phpMyAdmin: 5.2.3
+
+================================================================================
+For support and updates, visit the GitHub repository.
+================================================================================
