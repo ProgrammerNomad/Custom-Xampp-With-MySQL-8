@@ -163,7 +163,7 @@ Navigation.loadChildNodes = function (isNode, $expandElem, callback) {
       if (data.errors) {
         var $errors = $(data.errors);
         if ($errors.children().length > 0) {
-          $('#pma_errors').replaceWith(data.errors);
+          $('#pma_errors').append(data.errors);
         }
       }
       if (callback && typeof callback === 'function') {
@@ -968,6 +968,19 @@ Navigation.ResizeHandler = function () {
     setTimeout(function () {
       $('body').css('padding-top', $('#floating_menubar').outerHeight(true));
     }, 2);
+    if (window.MutationObserver) {
+      var target = document.getElementById('floating_menubar');
+      if (target) {
+        var observer = new MutationObserver(function () {
+          $('body').css('padding-top', $('#floating_menubar').outerHeight(true));
+        });
+        observer.observe(target, {
+          attributes: true,
+          childList: true,
+          subtree: true
+        });
+      }
+    }
     $('#pma_console').css('margin-' + this.left, pos + resizerWidth + 'px');
     $resizer.css(this.left, pos + 'px');
     if (pos === 0) {
@@ -1303,7 +1316,6 @@ Navigation.FastFilter = {
             itemFilter($(this)); // recursive
           });
         });
-
         $curr.children('ul').children('li').children('a').not('.container').each(function () {
           if (regex.test($(this).text())) {
             $(this).parent().show().removeClass('hidden');
@@ -1321,7 +1333,6 @@ Navigation.FastFilter = {
           $group.children('div.list_container').each(function () {
             containerFilter($(this)); // recursive
           });
-
           $group.show().removeClass('hidden');
           if ($group.children('div.list_container').children('ul').children('li').not('.hidden').length === 0) {
             $group.hide().addClass('hidden');

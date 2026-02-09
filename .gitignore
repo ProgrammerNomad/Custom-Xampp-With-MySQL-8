@@ -1,3 +1,6 @@
 htdocs/*
 mysql/data/mysql_error.log
-mysql/data/mysql_error.log
+/phpMyAdmin_old_backup
+apache/logs/access.log
+apache/logs/error.log
+/mysql/data

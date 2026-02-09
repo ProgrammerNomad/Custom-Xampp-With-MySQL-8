@@ -632,7 +632,6 @@ AJAX.registerOnload('server/status/monitor.js', function () {
     refreshChartGrid();
     saveMonitor(); // Save settings
   });
-
   $('div.popupContent select[name="gridChartRefresh"]').on('change', function () {
     monitorSettings.gridRefresh = parseInt(this.value, 10) * 1000;
     clearTimeout(runtime.refreshTimeout);
@@ -645,7 +644,6 @@ AJAX.registerOnload('server/status/monitor.js', function () {
     runtime.refreshTimeout = setTimeout(refreshChartGrid, monitorSettings.gridRefresh);
     saveMonitor(); // Save settings
   });
-
   $('a[href="#addNewChart"]').on('click', function (event) {
     event.preventDefault();
     $('#addChartButton').on('click', function () {
@@ -668,12 +666,14 @@ AJAX.registerOnload('server/status/monitor.js', function () {
       saveMonitor(); // Save settings
 
       $('#closeModalButton').off('click');
+      $('#addChartButton').off('click');
     });
     $('#closeModalButton').on('click', function () {
       newChart = null;
       $('span#clearSeriesLink').hide();
       $('#seriesPreview').html('');
       $('#closeModalButton').off('click');
+      $('#addChartButton').off('click');
     });
     var $presetList = $('#addChartModal').find('select[name="presetCharts"]');
     if ($presetList.html().length === 0) {
@@ -795,7 +795,9 @@ AJAX.registerOnload('server/status/monitor.js', function () {
         }
         $('#emptyDialog').dialog('close');
       };
-      reader.readAsText(input.files[0]);
+      if (input.files[0]) {
+        reader.readAsText(input.files[0]);
+      }
     };
     dlgBtns[Messages.strCancel].click = function () {
       $(this).dialog('close');
@@ -1169,7 +1171,6 @@ AJAX.registerOnload('server/status/monitor.js', function () {
     } else {
       panelWidth = $('#logTable').innerWidth() - 10; // leave some space for vertical scroll bar
     }
-
     var wdt = panelWidth;
     var windowWidth = $(window).width();
     if (windowWidth > 768) {
@@ -1177,7 +1178,7 @@ AJAX.registerOnload('server/status/monitor.js', function () {
     }
     chartSize = {
       width: Math.floor(wdt),
-      height: Math.floor(0.75 * wdt)
+      height: Math.floor(0.55 * wdt)
     };
   }
 
@@ -1954,15 +1955,14 @@ AJAX.registerOnload('server/status/monitor.js', function () {
     $table.append('<tfoot>' + '<tr><th colspan="' + (cols.length - 1) + '">' + Messages.strSumRows + ' ' + data.numRows + '<span class="float-end">' + Messages.strTotal + '</span></th><th class="text-end">' + data.sum.TOTAL + '</th></tr></tfoot>');
 
     // Append a tooltip to the count column, if there exist one
-    if ($('#logTable').find('tr').first().find('th').last().text().indexOf('#') > -1) {
-      $('#logTable').find('tr').first().find('th').last().append('&nbsp;' + Functions.getImage('b_help', '', {
-        'class': 'qroupedQueryInfoIcon'
-      }));
-      var tooltipContent = Messages.strCountColumnExplanation;
+    const amountColumn = $('#logTable').find('tr').first().find('th').last();
+    if (amountColumn.text().indexOf('#') > -1) {
+      amountColumn.append('&nbsp;' + Functions.getImage('b_help'));
+      let tooltipContent = Messages.strCountColumnExplanation;
       if (groupInserts) {
-        tooltipContent += '<p>' + Messages.strMoreCountColumnExplanation + '</p>';
+        tooltipContent += '<br>' + Messages.strMoreCountColumnExplanation;
       }
-      Functions.tooltip($('img.qroupedQueryInfoIcon'), 'img', tooltipContent);
+      Functions.tooltip(amountColumn, 'th', tooltipContent);
     }
     $('#logTable').find('table').tablesorter({
       sortList: [[cols.length - 1, 1]],
