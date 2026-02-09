@@ -92,3 +92,4 @@ security/
 !apache/conf/extra/*.conf
 !mysql/bin/my.ini
 !phpMyAdmin/config.inc.php
+xampp-control.log
